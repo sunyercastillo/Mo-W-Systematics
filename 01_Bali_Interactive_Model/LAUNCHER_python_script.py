@@ -27,8 +27,9 @@ def run_dashboard():
         time.sleep(1)
         
         print("📊 Launching Streamlit server...")
+        # Use sys.executable to run streamlit module correctly from current environment
         proc = subprocess.Popen([
-            "streamlit", "run", "MAIN_streamlit_web_dashboard.py",
+            sys.executable, "-m", "streamlit", "run", "MAIN_streamlit_web_dashboard.py",
             "--server.headless", "true",
             "--server.port", "8501"
         ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
