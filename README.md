@@ -1,4 +1,4 @@
-# Bali et al. (2012) Interactive Model Dashboard
+# Mo-W-Th-U Systematics Interactive Model Dashboard
 
 This repository contains an interactive dashboard for modeling trace element partitioning (Mo, W, U, Th) in subduction zones, based on the scientific framework of Bali et al. (2012).
 
