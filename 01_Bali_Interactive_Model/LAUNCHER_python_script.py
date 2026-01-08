@@ -38,8 +38,18 @@ def run_dashboard():
         
         # Wait a moment for server to start
         print("⏳ Waiting for server to initialize...")
-        time.sleep(5)
-        
+        for i in range(5):
+            if proc.poll() is not None:
+                # Process died!
+                stderr_output = proc.stderr.read().decode('utf-8')
+                print("\n❌ Error: Streamlit server failed to start!")
+                print("Error details:")
+                print(stderr_output)
+                input("Press Enter to exit...")
+                sys.exit(1)
+            time.sleep(1)
+            print(f"   ... {5-i}")
+
         # Open browser
         url = "http://localhost:8501"
         print(f"🌐 Opening dashboard in browser: {url}")
