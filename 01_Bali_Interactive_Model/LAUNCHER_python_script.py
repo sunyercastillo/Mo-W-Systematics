@@ -23,19 +23,22 @@ def run_dashboard():
     # Start Streamlit in background
     try:
         # Kill any existing streamlit processes
+        print("🧹 Cleaning up old processes...")
         subprocess.run(["pkill", "-f", "streamlit"], capture_output=True)
-        time.sleep(1)
+        time.sleep(2)  # Wait longer for port to free
         
         print("📊 Launching Streamlit server...")
         # Use sys.executable to run streamlit module correctly from current environment
         proc = subprocess.Popen([
             sys.executable, "-m", "streamlit", "run", "MAIN_streamlit_web_dashboard.py",
             "--server.headless", "true",
-            "--server.port", "8501"
+            "--server.port", "8501",
+            "--server.address", "localhost"
         ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         
         # Wait a moment for server to start
-        time.sleep(3)
+        print("⏳ Waiting for server to initialize...")
+        time.sleep(5)
         
         # Open browser
         url = "http://localhost:8501"
